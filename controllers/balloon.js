@@ -15,3 +15,9 @@ balloonRouter.get('/:id', (req, res) => {
         //res.render('', { balloon });           Create Show page
     });
 });
+
+balloonRouter.post('/', (req, res) => {
+    Balloon.create(req.body).then( () => {
+        res.redirect('/balloons');
+    });
+});
