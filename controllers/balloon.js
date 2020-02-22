@@ -6,7 +6,7 @@ const balloonRouter = express.Router();
 
 balloonRouter.get('/', (req, res) => {
     Balloon.find().then( (balloons) => {
-//      res.render('', { balloons });             Create Index route
+      res.render('balloons/index', { balloons });
     });
 });
 
@@ -25,3 +25,6 @@ balloonRouter.post('/', (req, res) => {
         res.redirect('/balloons');
     });
 });
+
+
+module.exports = balloonRouter;
