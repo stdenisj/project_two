@@ -11,7 +11,14 @@ const Balloon = new Schema({
         type: String,
         required: true,
     },
-    qty: Number,
+    price: {
+        type: Number,
+        required: true,
+    },
+    qty: {
+        type: Number,
+        required: true,
+    },
     img: {
         type: String,
         required: true,
