@@ -6,7 +6,7 @@ const balloonRouter = express.Router();
 
 balloonRouter.get('/', (req, res) => {
     Balloon.find().then( (balloons) => {
-      res.render('balloons/balloons');
+      res.render('balloons/balloons', { balloons });
     });
 });
 
