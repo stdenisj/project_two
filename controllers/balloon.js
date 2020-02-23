@@ -5,7 +5,7 @@ const Balloon = require('../models/balloon');
 const balloonRouter = express.Router();
 
 balloonRouter.get('/', (req, res) => {
-    Balloon.find().then( (balloons) => {
+    Balloon.find({}).then( (balloons) => {
       res.render('balloons/balloons', { balloons });
     });
 });
@@ -22,7 +22,7 @@ balloonRouter.get('/:id', (req, res) => {
 
 balloonRouter.post('/', (req, res) => {
     Balloon.create(req.body).then( () => {
-        res.redirect('/balloons');
+        res.redirect('/balloons/');
     });
 });
 
