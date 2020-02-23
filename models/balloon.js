@@ -21,9 +21,6 @@ const Balloon = new Schema({
     },
     img: {
         type: String,
-        required: true,
-        //TODO Add default image file path;
-        // default: '',
     }
 });
 
