@@ -70,7 +70,7 @@ app.use('/balloons', balloonRouter)
 // app.use('/hats', hatRouter);
 
 app.use('/', (req, res) => {
-    res.render('index');
+    res.render('homepage/index');
 });
 
 /* Step 5

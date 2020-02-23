@@ -10,6 +10,8 @@ const mongoose = require('mongoose');
  *
  */
 
+const connectionString = process.env.MONGODB_URI || "mongodb://localhost/partyStore";
+
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
 }
