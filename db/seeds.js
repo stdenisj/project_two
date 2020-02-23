@@ -1,6 +1,6 @@
 const Balloon = require('../models/balloon');
 
-let newBallons = [
+let newBalloons = [
     {
         name: 'Red Balloon',
         color: 'Red',
@@ -12,7 +12,7 @@ let newBallons = [
 
 
 Balloon.deleteMany().then(() => {
-    return Balloon.create(newBallons);
+    return Balloon.create(newBalloons);
   }).then( () => {
       console.log('Database seeded');
-  });
+});
