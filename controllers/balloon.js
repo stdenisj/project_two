@@ -19,6 +19,8 @@ balloonRouter.get('/new', (req, res) => {
 balloonRouter.get('/:id', (req, res) => {
     Balloon.findById(req.params.id).then( (balloon) => {
         res.render('balloons/balloon', { balloon });
+    }).catch( (e) => {
+        console.log(e);
     });
 });
 
@@ -31,6 +33,8 @@ balloonRouter.post('/', (req, res) => {
 balloonRouter.get('/:id/edit', (req, res) => {
     Balloon.findById(req.params.id).then( (balloon) => {
         res.render('balloons/editBalloon', { balloon});
+    }).catch( (e) => {
+        console.log(e);
     });
 });
 
