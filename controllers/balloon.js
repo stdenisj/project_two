@@ -11,12 +11,12 @@ balloonRouter.get('/', (req, res) => {
 });
 
 balloonRouter.get('/new', (req, res) => {
-    // res.render('');                          Create new balloon form
+    res.render('balloons/newBalloon');
 });
 
 balloonRouter.get('/:id', (req, res) => {
     Balloon.findById(req.params.id).then( (balloon) => {
-        //res.render('', { balloon });           Create Show page
+        res.render('balloons/balloon', { balloon });
     });
 });
 
