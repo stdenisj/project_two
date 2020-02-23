@@ -1,6 +1,4 @@
 const Balloon = require('../models/balloon');
-const Cake = require('../models/cake');
-const hat = require('../models/hat');
 
 let newBallons = [
     {
@@ -11,8 +9,6 @@ let newBallons = [
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRrECexM_qlP_ZWjtW9h0xidvgiBr5TFncrgGUbekZZEOxVxZrk',
     }
 ];
-
-
 
 
 Balloon.deleteMany().then(() => {

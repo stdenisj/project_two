@@ -10,8 +10,6 @@ const mongoose = require('mongoose');
  *
  */
 
-const connectionString = process.env.MONGODB_URI || "mongodb://localhost/partyStore";
-
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
 }
@@ -34,10 +32,6 @@ mongoose.connection.once('open', function() {
  *
  * NOTE: newUrlParser diables a deprecation warning
  */
-mongoose.connect(connectionString, { useNewUrlParser: true})
-  .then(() => {
-    console.log("connected to mongo at: " + connectionString);
-  });
 
 /* Export the mongoose object.
  *
