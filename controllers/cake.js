@@ -33,6 +33,17 @@ cakeRouter.post('/', (req, res) => {
     });
 });
 
+cakeRouter.put('/:id', (req, res) => {
+    Cake.findByIdAndUpdate(req.params.id, req.body).then( (cake) => {
+        res.redirect('/cakes/' + cake.id);
+    });
+});
+
+cakeRouter.delete('/:id', (req, res) => {
+    Cake.findByIdAndRemove(req.params.id).then( () => {
+        res.redirect('/cakes');
+    });
+});
 
 
 module.exports = cakeRouter;
