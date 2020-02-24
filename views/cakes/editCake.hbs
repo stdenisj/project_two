@@ -1,0 +1,20 @@
+<main>
+    <h2>Edit Cake</h2>
+
+<div>
+
+    <form action="/cakes/{{ cake.id }}?_method=PUT" method="POST">
+        <input type="text" value="{{ cake.name }}" name="name"><br>
+        <input type="text" value="{{ cake.description }}" name="description"><br>
+        <input type="number" value="{{ cake.price }}" name="price"><br>
+        <input type="number" value="{{ cake.qty }}" name="qty"><br>
+        <input type="text" value="{{ cake.img }}" name="img"><br>
+        Is this cake Vegan?<br>
+        Yes<input type="radio" name="isVegan" value="true" {{#if cake.isVegan}} checked {{/if}}/>
+        No<input type="radio" name="isVegan" value="false" {{#if cake.isVegan}} {{else}} checked {{/if}}/><br>
+        <input type="submit" value="Edit Cake">
+    </form>
+
+</div>
+
+</main>
