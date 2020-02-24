@@ -2,12 +2,10 @@
 
 	<h2>EDIT THIS Balloon!</h2>
 
-	<a href="/balloons">Return to Home Page</a>
-
 	<div></div>
 
 
-		<form action="/{{ balloon.id }}?_method=PUT" method="POST">
+		<form action="/balloons/{{ balloon.id }}?_method=PUT" method="POST">
 			Name: <input type="text" name="name" value="{{ balloon.name }}"/><br/>
 			Color: <input type="text" name="color" value="{{ balloon.color }}"/><br/>
 			Price: <input type="number" name="price" value="{{ balloon.price }}"/><br/>
