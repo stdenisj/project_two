@@ -11,7 +11,9 @@
         
                 <p>Description: {{cake.description}}</p>
 
-                <p>Vegan: {{ cake.isVegan }}</p>
+                {{#if cake.isVegan}}
+                <p>This cake is vegan</p>
+                {{/if}}
 
                 <p>Price: ${{cake.price}}</p>
         
