@@ -6,21 +6,21 @@ let newBalloons = [
         color: 'Red',
         price: 5,
         qty: 99,
-        img: 'images/redBalloons.jpg',
+        img: 'https://cf2.s3.souqcdn.com/item/2018/05/01/33/65/58/17/item_XL_33655817_131786462.jpg',
     },
     {
         name: 'Blue Balloon',
         color: 'Blue',
         price: 5,
         qty: 50,
-        img: 'images/blueBalloons.jpg',
+        img: 'https://i.pinimg.com/originals/e4/b2/8c/e4b28c9affff7931689a48cb58f70f07.jpg',
     },
     {
         name: 'Teal Balloon',
         color: 'Teal',
         price: 8,
         qty: 20,
-        img: 'images/tealBalloons.jpg',
+        img: 'https://mothersday.floralgaragesg.com/wp-content/uploads/2016/06/teal-balloon.jpg',
     }
 ];
 
