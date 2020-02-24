@@ -1,14 +1,25 @@
 <main>
-    <h2> This is the show page</h2>
-    <p>
-        {{balloon.name}}
-        {{balloon.color}}
-        {{balloon.price}}
-        {{balloon.gty}}
-        {{balloon.img}}
-    </p>
+    <h2>{{ balloon.name }}</h2>
 
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <img src="{{balloon.img}}">
+            </div>
 
+            <div class="col">
+        
+                <p>Color: {{balloon.color}}</p>
+
+                <p>Price: ${{balloon.price}}</p>
+        
+                <p>Quantity Available: {{balloon.qty}}</p>
+
+            </div>
+        
+        </div>
+
+    </div>
 
 </main>
 
