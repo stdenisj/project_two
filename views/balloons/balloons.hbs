@@ -5,7 +5,9 @@
 
 			{{#each balloons }}
         	<div class="col">
-					<img src="{{ img }}" height="200px" >
+					<a href="balloons/{{ id }}">
+						<img src="{{ img }}" height="200px" >
+					</a>
 					<h3>   <a href="balloons/{{ id }}">{{ name }}</a>   </h3>
         	</div>
 			{{/each}}

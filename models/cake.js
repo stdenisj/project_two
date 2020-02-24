@@ -7,7 +7,11 @@ const Cake = new Schema({
         required: true,
     },
     description: String,
-    isVegan: Boolean,
+    isVegan: {
+        type: String,
+        default: 'No',
+        enum: ['Yes', 'No']
+    },
     img: {
         type: String,
         //TODO default image for cake

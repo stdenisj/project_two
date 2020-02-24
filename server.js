@@ -18,7 +18,7 @@ const methodOverride = require('method-override');
  *
  */
 const balloonRouter = require('./controllers/balloon.js');
-// const cakeRouter = require('./controllers/cake.js');
+const cakeRouter = require('./controllers/cake.js');
 // const hatRouter = require('./controllers/hat.js');
 
 
@@ -66,7 +66,7 @@ app.set('view engine', 'hbs')
 
 app.use('/balloons', balloonRouter)
 
-// app.use('/cakes', cakeRouter);
+app.use('/cakes', cakeRouter);
 
 // app.use('/hats', hatRouter);
 
