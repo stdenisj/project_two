@@ -46,7 +46,7 @@ balloonRouter.put('/:id', (req, res) => {
 
 balloonRouter.delete('/:id', (req, res) => {
     Balloon.findByIdAndRemove(req.params.id).then( () => {
-        res.redirect('/');
+        res.redirect('/balloons');
     });
 });
 
