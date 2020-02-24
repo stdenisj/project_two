@@ -4,10 +4,9 @@ let cakeRouter = express.Router();
 const Cake = require('../models/cake');
 
 
-cakeRouter.get('/', (req, res) => {
-    Cake.find().then( (cakes) => {
-        res.render('balloons/balloons', { cakes });
-    });
+
+cakeRouter.get('/new', (req, res) => {
+    res.render('cakes/newCake');
 });
 
 cakeRouter.get('/:id', (req, res) => {
@@ -22,9 +21,17 @@ cakeRouter.get('/:id/edit', (req, res) => {
     })
 })
 
+cakeRouter.get('/', (req, res) => {
+    Cake.find().then( (cakes) => {
+        res.render('cakes/cakes', { cakes });
+    });
+});
 
-
-
+cakeRouter.post('/', (req, res) => {
+    Cake.create(req.body).then( () => {
+        res.redirect('/cakes');
+    });
+});
 
 
 
