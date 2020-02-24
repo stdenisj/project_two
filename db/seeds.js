@@ -4,10 +4,24 @@ let newBalloons = [
     {
         name: 'Red Balloon',
         color: 'Red',
-        price: 4,
+        price: 5,
         qty: 99,
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRrECexM_qlP_ZWjtW9h0xidvgiBr5TFncrgGUbekZZEOxVxZrk',
+        img: 'images/redBalloons.jpg',
     },
+    {
+        name: 'Blue Balloon',
+        color: 'Blue',
+        price: 5,
+        qty: 50,
+        img: 'images/blueBalloons.jpg',
+    },
+    {
+        name: 'Teal Balloon',
+        color: 'Teal',
+        price: 8,
+        qty: 20,
+        img: 'images/tealBalloons.jpg',
+    }
 ];
 
 

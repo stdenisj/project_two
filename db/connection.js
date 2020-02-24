@@ -21,6 +21,7 @@ mongoose.connection.on('error', function(err) {
   process.exit(-1);
   }
 );
+
 mongoose.connection.once('open', function() {
   console.log("Mongoose has connected to MongoDB!");
 });
