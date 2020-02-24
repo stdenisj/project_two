@@ -1,13 +1,16 @@
 <main>
 	<h2>List of Balloons</h2>
+	<div class="container">
+		<div class="row">
 
-		{{#each balloons }}
-        <div>
-				<h3>   <a href="balloons/{{ id }}">{{ name }}</a>   </h3>
+			{{#each balloons }}
+        	<div class="col">
+					<h3>   <a href="balloons/{{ id }}">{{ name }}</a>   </h3>
+        	</div>
+			{{/each}}
+        	<div>
+		    	<a href="balloons/new">Create Balloon</a>
+			</div>
         </div>
-		{{/each}}
-        <div>
-		    <a href="balloons/new">Create Balloon</a>
-        </div>
-
+	</div>
 </main>
