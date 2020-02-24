@@ -25,11 +25,11 @@ balloonRouter.get('/:id/edit', (req, res) => {
 });
 
 balloonRouter.get('/', (req, res) => {
-    Balloon.find().then( (balloons) => {
+     Balloon.find().then( (balloons) => {
       res.render('balloons/balloons', { balloons });
-    }).catch( (e) => {
+   }).catch( (e) => {
         console.log(e);
-    });
+     });
 });
 
 balloonRouter.post('/', (req, res) => {
