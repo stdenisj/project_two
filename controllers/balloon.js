@@ -40,7 +40,7 @@ balloonRouter.post('/', (req, res) => {
 
 balloonRouter.put('/:id', (req, res) => {
     Balloon.findByIdAndUpdate(req.params.id, req.body).then( (balloon) => {
-        res.redirect('/' + balloon.id);
+        res.redirect('/balloons/' + balloon.id);
     });
 });
 
