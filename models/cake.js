@@ -10,7 +10,7 @@ const Cake = new Schema({
     isVegan: Boolean,
     img: {
         type: String,
-        //TODO default image for cake
+        default: 'http://placehold.it/300x250&text=Ad',
     },
     price: {
         type: Number,

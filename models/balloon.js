@@ -21,6 +21,7 @@ const Balloon = new Schema({
     },
     img: {
         type: String,
+        default: 'http://placehold.it/300x250&text=Ad',
     }
 });
 
