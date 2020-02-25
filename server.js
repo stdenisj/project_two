@@ -21,6 +21,10 @@ const balloonRouter = require('./controllers/balloon.js');
 const cakeRouter = require('./controllers/cake.js');
 const hatRouter = require('./controllers/hat.js');
 
+const Balloon = require('./models/balloon');
+const Cake = require('./models/cake');
+const Hat = require('./models/hat');
+
 
 /* Step 3
  *
@@ -71,8 +75,25 @@ app.use('/cakes', cakeRouter);
 app.use('/hats', hatRouter);
 
 app.use('/', (req, res) => {
-    res.render('homepage/splash');
-});
+        let foundBalloon = null;
+        let foundCake = null;
+        let foundHat = null;
+        Balloon.find().then( (balloons) => {
+            let i = Math.floor(Math.random() * balloons.length);
+            foundBalloon = balloons[i]
+            return Cake.find()
+        }).then( (cakes) => {
+            let j = Math.floor(Math.random() * cakes.length);
+            foundCake = cakes[j]
+            return Hat.find()
+        }).then( (hats) => {
+            let k = Math.floor(Math.random() * hats.length);
+            foundHat = hats[k]
+            res.render('homepage/splash', { foundBalloon, foundCake, foundHat})
+        })
+    });
+//     // res.render('homepage/splash');
+// });
 
 /* Step 5
  *
