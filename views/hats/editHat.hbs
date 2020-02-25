@@ -1,0 +1,24 @@
+<main>
+    <h2>Edit Hat</h2>
+
+<div>
+
+    <form action="/hats/{{ hat.id }}?_method=PUT" method="POST">
+        <input type="text" value="{{ hat.name }}" name="name"><br>
+        <input type="text" value="{{ hat.color }}" name="color"><br>
+        <input type="text" value="{{ hat.description }}" name="description"><br>
+        <select name="size" value="{{ hat.size}}">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+        </select><br>
+        <input type="number"value="{{ hat.price }}" name="price"><br>
+        <input type="number" value="{{ hat.qty }}" name="qty"><br>
+        <input type="text" value="{{ hat.img }}" name="img"><br>
+        <input type="submit" value="Add Hat">
+    </form>
+
+</div>
+
+
+</main>
