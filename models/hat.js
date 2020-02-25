@@ -20,6 +20,10 @@ const Hat = new Schema ({
     price: {
         type: Number,
         required: true,
+    },
+    img: {
+        type: String,
+        default: "http://placehold.it/300x250&text=Hats",
     }
 });
 
