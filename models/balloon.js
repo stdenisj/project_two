@@ -3,6 +3,11 @@ const Schema = mongoose.Schema;
 
 
 const Balloon = new Schema({
+    category: {
+        type: String,
+        required: true,
+        default: 'Balloon',
+    },
     name: {
         type: String,
         required: true,

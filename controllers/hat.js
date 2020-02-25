@@ -23,8 +23,8 @@ hatRouter.get('/:id/edit', (req, res) => {
 });
 
 hatRouter.get('/', (req, res) => {
-    Hat.find().then( (hats) => {
-        res.render('hats/hats', { hats });
+    Hat.find().then( (items) => {
+        res.render('homepage/index', { items });
     });
 });
 

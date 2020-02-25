@@ -22,8 +22,8 @@ cakeRouter.get('/:id/edit', (req, res) => {
 })
 
 cakeRouter.get('/', (req, res) => {
-    Cake.find().then( (cakes) => {
-        res.render('cakes/cakes', { cakes });
+    Cake.find().then( (items) => {
+        res.render('homepage/index', { items });
     });
 });
 

@@ -71,7 +71,7 @@ app.use('/cakes', cakeRouter);
 app.use('/hats', hatRouter);
 
 app.use('/', (req, res) => {
-    res.render('homepage/index');
+    res.render('homepage/splash');
 });
 
 /* Step 5

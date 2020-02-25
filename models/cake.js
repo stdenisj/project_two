@@ -2,6 +2,11 @@ const mongoose = require('../db/connection');
 const Schema = mongoose.Schema;
 
 const Cake = new Schema({
+    category: {
+        type: String,
+        required: true,
+        default: 'Cake',
+    },
     name: {
         type: String,
         required: true,

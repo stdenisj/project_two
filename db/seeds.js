@@ -2,6 +2,7 @@ const Balloon = require('../models/balloon');
 
 let newBalloons = [
     {
+        category: 'balloon',
         name: 'Red Balloon',
         color: 'Red',
         price: 5,
@@ -9,6 +10,7 @@ let newBalloons = [
         img: 'https://cf2.s3.souqcdn.com/item/2018/05/01/33/65/58/17/item_XL_33655817_131786462.jpg',
     },
     {
+        category: 'Balloon',
         name: 'Blue Balloon',
         color: 'Blue',
         price: 5,
@@ -16,6 +18,7 @@ let newBalloons = [
         img: 'https://i.pinimg.com/originals/e4/b2/8c/e4b28c9affff7931689a48cb58f70f07.jpg',
     },
     {
+        category: 'balloon',
         name: 'Teal Balloon',
         color: 'Teal',
         price: 8,
