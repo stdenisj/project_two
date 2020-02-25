@@ -10,7 +10,7 @@ let newBalloons = [
         img: 'https://cf2.s3.souqcdn.com/item/2018/05/01/33/65/58/17/item_XL_33655817_131786462.jpg',
     },
     {
-        category: 'Balloon',
+        category: 'balloon',
         name: 'Blue Balloon',
         color: 'Blue',
         price: 5,

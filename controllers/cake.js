@@ -10,8 +10,8 @@ cakeRouter.get('/new', (req, res) => {
 });
 
 cakeRouter.get('/:id', (req, res) => {
-    Cake.findById(req.params.id).then( (cake) => {
-        res.render('cakes/cake', { cake });
+    Cake.findById(req.params.id).then( (item) => {
+        res.render('homepage/showOne', { item });
     });
 });
 

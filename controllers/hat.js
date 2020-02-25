@@ -10,8 +10,8 @@ hatRouter.get('/new', (req, res) => {
 
 
 hatRouter.get('/:id', (req, res) => {
-    Hat.findById(req.params.id).then( (hat) => {
-        res.render('hats/hat', { hat });
+    Hat.findById(req.params.id).then( (item) => {
+        res.render('homepage/showOne', { item });
     });
 });
 

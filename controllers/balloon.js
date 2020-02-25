@@ -9,8 +9,8 @@ balloonRouter.get('/new', (req, res) => {
 });
 
 balloonRouter.get('/:id', (req, res) => {
-    Balloon.findById(req.params.id).then( (balloon) => {
-        res.render('balloons/balloon', { balloon });
+    Balloon.findById(req.params.id).then( (item) => {
+        res.render('homepage/showOne', { item });
     }).catch( (e) => {
         console.log(e);
     });
