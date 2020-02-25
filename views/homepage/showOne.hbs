@@ -38,7 +38,7 @@
     <form action="/{{item.category}}s/{{ item.id }}?_method=DELETE" method="POST">
 			    <input type="submit" value="Delete"/>
 		        </form>
-                
-    <a href="/{{item.category}}s/{{ item.id }}/edit">Edit</a>
-
+    <form action="/{{item.category}}s/{{ item.id }}/edit" method="GET">
+        <input type="submit" value="Edit">
+    </form>
 </main>
