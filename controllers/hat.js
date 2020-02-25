@@ -41,7 +41,7 @@ hatRouter.put('/:id', (req, res) => {
 });
 
 hatRouter.delete('/:id', (req, res) => {
-    Hat.findByIdAndRemove(req.params.body).then( () => {
+    Hat.findByIdAndRemove(req.params.id).then( () => {
         res.redirect('/hats');
     });
 });
