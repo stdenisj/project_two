@@ -1,5 +1,5 @@
 <main>
-    <h2>{{ item.name }}</h2>
+    <h2><a href="/{{item.category}}s">{{ item.name }}</a></h2>
 
     <div class="container">
         <div class="row">
@@ -7,7 +7,7 @@
                 <img src="{{item.img}}" height="500px">
             </div>
 
-            <div class="col">
+            <div class="col text-center">
                 {{#if item.description}}
                     <p>Description: {{ item.description }}</p>
                 {{/if}}
@@ -29,16 +29,17 @@
 
                 <p>Quantity Available: {{item.qty}}</p>
 
+                <form action="/{{item.category}}s/{{ item.id }}?_method=DELETE" method="POST">
+			        <input type="submit" value="Delete"/>
+		        </form>
+                <form action="/{{item.category}}s/{{ item.id }}/edit" method="GET">
+                    <input type="submit" value="Edit">
+                </form>
                 
             </div>
         
         </div>
 
     </div>
-    <form action="/{{item.category}}s/{{ item.id }}?_method=DELETE" method="POST">
-			    <input type="submit" value="Delete"/>
-		        </form>
-    <form action="/{{item.category}}s/{{ item.id }}/edit" method="GET">
-        <input type="submit" value="Edit">
-    </form>
+
 </main>

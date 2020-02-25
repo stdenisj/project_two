@@ -10,8 +10,8 @@
         <input type="number" value="{{ cake.qty }}" name="qty"><br>
         <input type="text" value="{{ cake.img }}" name="img"><br>
         Is this cake Vegan?<br>
-        Yes<input type="radio" name="isVegan" value="true" {{#if cake.isVegan}} checked {{/if}}/>
-        No<input type="radio" name="isVegan" value="false" {{#if cake.isVegan}} {{else}} checked {{/if}}/><br>
+        Yes    <input type="radio" name="isVegan" value="true" {{#if cake.isVegan}} checked {{/if}}/>
+        No      <input type="radio" name="isVegan" value="false" {{#if cake.isVegan}} {{else}} checked {{/if}}/><br>
         <input type="submit" value="Edit Cake">
     </form>
 

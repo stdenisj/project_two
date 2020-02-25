@@ -24,6 +24,14 @@ let newBalloons = [
         price: 8,
         qty: 20,
         img: 'https://mothersday.floralgaragesg.com/wp-content/uploads/2016/06/teal-balloon.jpg',
+    },
+    {
+        category: 'balloon',
+        name: 'Green Balloon',
+        color: 'Green',
+        price: 5,
+        qty: 1000,
+        img: 'https://cdn.clipart.email/074faf7576edf8a0eaadcd3a41d5112b_ballons-green-duh-pinterest-birthdays-happy-birthday-_1600-2429.jpeg',
     }
 ];
 
