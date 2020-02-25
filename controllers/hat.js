@@ -11,7 +11,7 @@ hatRouter.get('/new', (req, res) => {
 
 hatRouter.get('/:id', (req, res) => {
     Hat.findById(req.params.id).then( (hat) => {
-        res.resnder('hats/hat', { hat });
+        res.render('hats/hat', { hat });
     });
 });
 
