@@ -5,7 +5,7 @@ const Hat = new Schema ({
     category: {
         type: String,
         required: true,
-        default: 'hat',
+        default: 'Hat',
     },
     name: {
         type: String,
