@@ -5,7 +5,7 @@ const Cake = new Schema({
     category: {
         type: String,
         required: true,
-        default: 'cake',
+        default: 'Cake',
     },
     name: {
         type: String,

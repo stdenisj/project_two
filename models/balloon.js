@@ -6,7 +6,7 @@ const Balloon = new Schema({
     category: {
         type: String,
         required: true,
-        default: 'balloon',
+        default: 'Balloon',
     },
     name: {
         type: String,
