@@ -1,4 +1,4 @@
-<main>
+{{!-- <main>
     <h2>Add User</h2>
 
 <div>
@@ -11,5 +11,31 @@
 
 </div>
 
+
+</main> --}}
+
+<main>
+    <div class="container-fluid">
+        <div class="row text-center padding">
+            <div class="col text-center padding">
+                <H1>Please Sign In</H1>
+                <form action="/user" method="POST">
+                    <input type="text" placeholder="User Name" name="username"><br>
+                    <input type="password" placeholder="Password" name="password"><br>
+                    <input type="submit" value="Sign In">
+                </form>
+            </div>
+
+            <div class="col text-center padding">
+                <h1>Not Signed UP?</h1>
+                <h2>Create New Account</h2>
+                <form action="/user" method="POST">
+                    <input type="text" placeholder="User Name" name="username"><br>
+                    <input type="password" placeholder="Password" name="password"><br>
+                    <input type="submit" value="Create New User">
+                </form>
+            </div>
+        </div>
+    </div>
 
 </main>
