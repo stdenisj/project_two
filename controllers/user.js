@@ -6,6 +6,10 @@ const Cake = require('../models/cake')
 const Hat = require('../models/hat');
 const User = require('../models/user');
 
+userRouter.get('/new', (req, res) => {
+    res.render('users/newUser')
+})
+
 userRouter.get('/', (req, res) => {
     let user = null;
     User.findOne().then(foundUser => {
@@ -17,7 +21,16 @@ userRouter.get('/', (req, res) => {
         return Hat.populate(user.shoppingCart, { path: 'hat' });
     }).then( () => {
         res.render('users/showUser', { user });
+    }).catch( e => {
+        res.redirect('user/new')
     })
 });
+
+
+userRouter.post('/', (req, res) => {
+    User.create(req.body).then( () => {
+        res.redirect('/user')
+    })
+})
 
 module.exports = userRouter;
