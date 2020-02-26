@@ -2,6 +2,7 @@ let express = require('express');
 let cakeRouter = express.Router();
 
 const Cake = require('../models/cake');
+const User = require('../models/user');
 
 
 
@@ -11,7 +12,8 @@ cakeRouter.get('/new', (req, res) => {
 
 cakeRouter.get('/:id', (req, res) => {
     Cake.findById(req.params.id).then( (item) => {
-        res.render('homepage/showOne', { item });
+        const canBuy = item.qty > 0;
+        res.render('homepage/showOne', { item, canBuy });
     });
 });
 
@@ -45,5 +47,54 @@ cakeRouter.delete('/:id', (req, res) => {
     });
 });
 
+
+cakeRouter.put('/:id/buy', (req, res) => {
+    let cake = null;
+    let user = null;
+    Cake.findById(req.params.id).then(foundCake => {
+        cake = foundCake;
+        cake.qty -= 1;
+        return cake.save();
+    
+    }).then(cake => {
+        return User.findOne();
+    }).then(foundUser => {
+        user = foundUser;
+        return Cake.populate(user.shoppingCart, { path: 'cake' });
+    
+    }).then(() => {
+        // Figure out if the donut exists in the shopping cart:
+        let newCartItem = null;
+        // For each cart item:
+        for (let cartItem of user.shoppingCart) {
+            // If the cart item's donut's ID matches the ID from
+            // our request:
+            if(cartItem.balloon == undefined) {
+            let cakeId = cartItem.cake.id;
+            if (cakeId === cake.id) {
+                // Remember this item and update it below.
+                newCartItem = cartItem;
+            }
+        }
+        }
+        // If donut exists in the shopping cart:
+        if (newCartItem !== null) {
+            // Increase the cart item's quantity by 1
+            newCartItem.cakeQty += 1;
+        } else {
+            // Otherwise: create a new cart item with quantity 1
+            user.shoppingCart.push({
+                cake: cake.id,
+                cakeQty: 1,
+            });
+        }
+        return user.save();
+    
+    }).then(() => {
+        res.redirect('/cakes/' + cake.id);
+    }).catch(e => {
+        console.log(e);
+    });
+});
 
 module.exports = cakeRouter;

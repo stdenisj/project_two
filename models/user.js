@@ -8,12 +8,14 @@ const CartItem = new Schema ({
         },
     balQty: Number,
     balloonImg: String,
+    
     cake: {
         type: Schema.Types.ObjectId,
         ref: 'Cake',
     },
     cakeQty: Number,
     cakeImg: String,
+    
     hat: {
         type: Schema.Types.ObjectId,
         ref: 'Hat',
