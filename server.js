@@ -20,6 +20,7 @@ const methodOverride = require('method-override');
 const balloonRouter = require('./controllers/balloon.js');
 const cakeRouter = require('./controllers/cake.js');
 const hatRouter = require('./controllers/hat.js');
+const userRouter = require('./controllers/user.js')
 
 const Balloon = require('./models/balloon');
 const Cake = require('./models/cake');
@@ -73,6 +74,8 @@ app.use('/balloons', balloonRouter)
 app.use('/cakes', cakeRouter);
 
 app.use('/hats', hatRouter);
+
+app.use('/user', userRouter)
 
 app.use('/', (req, res) => {
         let foundBalloon = null;

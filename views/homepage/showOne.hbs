@@ -28,6 +28,12 @@
                 <p>Price: ${{item.price}}</p>
 
                 <p>Quantity Available: {{item.qty}}</p>
+                
+            {{#if canBuy }}
+				<form action="/{{item.category}}s/{{ item.id }}/buy?_method=PUT" method="POST">
+					<input type="submit" value="Buy now!"/>
+				</form>
+			{{/if}}
 
                 <form action="/{{item.category}}s/{{ item.id }}?_method=DELETE" method="POST">
 			        <input type="submit" value="Delete"/>

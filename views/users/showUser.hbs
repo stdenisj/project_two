@@ -1,0 +1,45 @@
+{{!-- <main>
+    <p>{{ user.username }}</p>
+    {{#each user.shoppingCart }}
+        <img src="{{ balloon.img}}">
+        <p>{{ balloon.name }}: {{ balQty }}</p>
+    {{/each}}
+    {{#each user.shoppingCart }}
+        <img src="{{ cake.img}}">
+        <p>{{ cake.name }}: {{ CakeQty }}</p>
+    {{/each}}
+    {{#each user.shoppingCart }}
+        <img src="{{ hat.img}}">
+        <p>{{ hat.name }}: {{ hatQty }}</p>
+    {{/each}}
+</main> --}}
+
+
+<div class="container">
+		<div class="row">
+			{{#each user.shoppingCart }}
+        	<div class="col text-center">
+					<a href="/{{ balloon.category }}s/{{ balloon.id }}">
+                        <img src="{{ balloon.img }}" height="200px" >
+                    </a>
+					<p>{{ balloon.name }} {{ balQty }}</p>
+        	</div>
+			{{/each}}
+            			{{#each user.shoppingCart }}
+        	<div class="col text-center">
+					<a href="/{{ cake.category }}s/{{ cake.id }}">
+                        <img src="{{ cake.img }}" height="200px" >
+                    </a>
+					<p>{{ cake.name }} {{ cakeQty }}</p>
+        	</div>
+			{{/each}}
+            			{{#each user.shoppingCart }}
+        	<div class="col text-center">
+					<a href="/{{ hat.category }}s/{{ hat.id }}">
+                        <img src="{{ hat.img }}" height="200px" >
+                    </a>
+					<p>{{ hat.name }} {{ hatQty }}</p>
+        	</div>
+			{{/each}}
+        </div>
+	</div>
