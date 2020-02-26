@@ -25,6 +25,7 @@ const userRouter = require('./controllers/user.js')
 const Balloon = require('./models/balloon');
 const Cake = require('./models/cake');
 const Hat = require('./models/hat');
+const User = require('./models/user')
 
 
 /* Step 3
@@ -81,7 +82,11 @@ app.use('/', (req, res) => {
         let foundBalloon = null;
         let foundCake = null;
         let foundHat = null;
-        Balloon.find().then( (balloons) => {
+        let admin = null;
+        User.findOne().then( (user) => {
+            admin = user;
+            return Balloon.find()
+        .then( (balloons) => {
             let i = Math.floor(Math.random() * balloons.length);
             foundBalloon = balloons[i]
             return Cake.find()
@@ -92,9 +97,10 @@ app.use('/', (req, res) => {
         }).then( (hats) => {
             let k = Math.floor(Math.random() * hats.length);
             foundHat = hats[k]
-            res.render('homepage/splash', { foundBalloon, foundCake, foundHat})
+            res.render('homepage/splash', { foundBalloon, foundCake, foundHat, admin})
         })
     });
+});
 //     // res.render('homepage/splash');
 // });
 
