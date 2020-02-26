@@ -11,12 +11,15 @@ hatRouter.get('/new', (req, res) => {
 
 
 hatRouter.get('/:id', (req, res) => {
-    Hat.findById(req.params.id).then( (item) => {
+    let admin = null;
+    User.findOne().then( (user) => {
+        admin = user;
+        return Hat.findById(req.params.id).then( (item) => {
         const canBuy = item.qty > 0;
-        res.render('homepage/showOne', { item, canBuy });
+        res.render('homepage/showOne', { item, canBuy, admin });
     });
 });
-
+});
 
 hatRouter.get('/:id/edit', (req, res) => {
     Hat.findById(req.params.id).then( (hat) => {

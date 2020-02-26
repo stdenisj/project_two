@@ -10,12 +10,16 @@ balloonRouter.get('/new', (req, res) => {
 });
 
 balloonRouter.get('/:id', (req, res) => {
+    let admin = null;
+    User.findOne().then( (user) => {
+        admin = user;
     Balloon.findById(req.params.id).then( (item) => {
         const canBuy = item.qty > 0;
-        res.render('homepage/showOne', { item, canBuy });
+        res.render('homepage/showOne', { item, canBuy, admin });
     }).catch( (e) => {
         console.log(e);
     });
+});
 });
 
 balloonRouter.get('/:id/edit', (req, res) => {
