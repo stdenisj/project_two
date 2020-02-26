@@ -3,6 +3,7 @@ const express = require('express');
 const hatRouter = express.Router();
 
 const Hat = require('../models/hat');
+const User = require('../models/user')
 
 hatRouter.get('/new', (req, res) => {
     res.render('hats/newHat');
@@ -11,7 +12,8 @@ hatRouter.get('/new', (req, res) => {
 
 hatRouter.get('/:id', (req, res) => {
     Hat.findById(req.params.id).then( (item) => {
-        res.render('homepage/showOne', { item });
+        const canBuy = item.qty > 0;
+        res.render('homepage/showOne', { item, canBuy });
     });
 });
 
@@ -45,6 +47,57 @@ hatRouter.delete('/:id', (req, res) => {
         res.redirect('/hats');
     });
 });
+
+hatRouter.put('/:id/buy', (req, res) => {
+    let hat = null;
+    let user = null;
+    Hat.findById(req.params.id).then(foundHat => {
+        hat = foundHat;
+        hat.qty -= 1;
+        return hat.save();
+    
+    }).then(hat => {
+        return User.findOne();
+    }).then(foundUser => {
+        user = foundUser;
+        return Hat.populate(user.shoppingCart, { path: 'hat' });
+    
+    }).then(() => {
+        // Figure out if the donut exists in the shopping cart:
+        let newCartItem = null;
+        // For each cart item:
+        for (let cartItem of user.shoppingCart) {
+            // If the cart item's donut's ID matches the ID from
+            // our request:
+            if((cartItem.cake == undefined) && (cartItem.balloon == undefined)){
+            let hatId = cartItem.hat.id;
+            if (hatId === hat.id) {
+                // Remember this item and update it below.
+                newCartItem = cartItem;
+            }
+        }
+        }
+        // If donut exists in the shopping cart:
+        if (newCartItem !== null) {
+            // Increase the cart item's quantity by 1
+            newCartItem.hatQty += 1;
+        } else {
+            // Otherwise: create a new cart item with quantity 1
+            user.shoppingCart.push({
+                hat: hat.id,
+                hatQty: 1,
+            });
+        }
+        return user.save();
+    
+    }).then(() => {
+        res.redirect('/hats/' + hat.id);
+    }).catch(e => {
+        console.log(e);
+    });
+});
+
+
 
 
 module.exports = hatRouter;

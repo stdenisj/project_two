@@ -73,7 +73,7 @@ balloonRouter.put('/:id/buy', (req, res) => {
         for (let cartItem of user.shoppingCart) {
             // If the cart item's donut's ID matches the ID from
             // our request:
-            if(cartItem.cake == undefined){
+            if((cartItem.cake == undefined) && (cartItem.hat == undefined)){
             let balloonId = cartItem.balloon.id;
             if (balloonId === balloon.id) {
                 // Remember this item and update it below.

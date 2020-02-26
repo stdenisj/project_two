@@ -69,7 +69,7 @@ cakeRouter.put('/:id/buy', (req, res) => {
         for (let cartItem of user.shoppingCart) {
             // If the cart item's donut's ID matches the ID from
             // our request:
-            if(cartItem.balloon == undefined) {
+            if((cartItem.hat == undefined) && (cartItem.balloon == undefined)) {
             let cakeId = cartItem.cake.id;
             if (cakeId === cake.id) {
                 // Remember this item and update it below.
