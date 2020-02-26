@@ -68,6 +68,7 @@ balloonRouter.put('/:id/buy', (req, res) => {
     
     }).then(() => {
         // Figure out if the donut exists in the shopping cart:
+        let newCartItemPrice = null;
         let newCartItem = null;
         // For each cart item:
         for (let cartItem of user.shoppingCart) {
@@ -85,11 +86,17 @@ balloonRouter.put('/:id/buy', (req, res) => {
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
             newCartItem.balQty += 1;
+            newCartItem.balPrice += newCartItem.balloon.price;
+            newCartItemPrice += newCartItem.balloon.price
+            user.cartTotal += newCartItemPrice;
+
         } else {
             // Otherwise: create a new cart item with quantity 1
+            user.cartTotal += balloon.price;
             user.shoppingCart.push({
                 balloon: balloon.id,
                 balQty: 1,
+                balPrice: balloon.price
             });
         }
         return user.save();

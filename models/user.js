@@ -7,6 +7,7 @@ const CartItem = new Schema ({
             ref: 'Balloon',
         },
     balQty: Number,
+    balPrice: Number,
     balloonImg: String,
     
     cake: {
@@ -14,6 +15,7 @@ const CartItem = new Schema ({
         ref: 'Cake',
     },
     cakeQty: Number,
+    cakePrice: Number,
     cakeImg: String,
     
     hat: {
@@ -21,6 +23,7 @@ const CartItem = new Schema ({
         ref: 'Hat',
     },
     hatQty: Number,
+    hatPrice: Number,
     hatImg: String,
 });
 
@@ -34,6 +37,10 @@ const User = new Schema ({
         required: true,
     },
     isAdmin: Boolean,
+    cartTotal: {
+        type: Number,
+        default: 0,
+    },
     shoppingCart: [CartItem],
 }, {
     // https://medium.com/@stefanledin/how-to-solve-the-unknown-modifier-pushall-error-in-mongoose-d631489f85c0

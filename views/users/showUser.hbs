@@ -23,6 +23,9 @@
                         <img src="{{ balloon.img }}" height="200px" >
                     </a>
 					<p>{{ balloon.name }} {{ balQty }}</p>
+                    {{#if balPrice}}
+                    <p>${{balPrice}}</p>
+                    {{/if}}
         	</div>
 			{{/each}}
             			{{#each user.shoppingCart }}
@@ -31,6 +34,9 @@
                         <img src="{{ cake.img }}" height="200px" >
                     </a>
 					<p>{{ cake.name }} {{ cakeQty }}</p>
+                    {{#if cakePrice}}
+                    <p>${{cakePrice}}</p>
+                    {{/if}}
         	</div>
 			{{/each}}
             			{{#each user.shoppingCart }}
@@ -39,7 +45,11 @@
                         <img src="{{ hat.img }}" height="200px" >
                     </a>
 					<p>{{ hat.name }} {{ hatQty }}</p>
+                {{#if hatPrice}}    
+                    <p>${{hatPrice}}</p>
+                {{/if}}
         	</div>
 			{{/each}}
+            <p>Total Price: ${{user.cartTotal}}</p>
         </div>
 	</div>

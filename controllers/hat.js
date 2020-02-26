@@ -64,6 +64,7 @@ hatRouter.put('/:id/buy', (req, res) => {
     
     }).then(() => {
         // Figure out if the donut exists in the shopping cart:
+        let newCartItemPrice = null;
         let newCartItem = null;
         // For each cart item:
         for (let cartItem of user.shoppingCart) {
@@ -81,11 +82,16 @@ hatRouter.put('/:id/buy', (req, res) => {
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
             newCartItem.hatQty += 1;
+            newCartItem.hatPrice += newCartItem.hat.price;
+            newCartItemPrice += newCartItem.hat.price
+            user.cartTotal += newCartItemPrice;
         } else {
             // Otherwise: create a new cart item with quantity 1
+            user.cartTotal += hat.price;
             user.shoppingCart.push({
                 hat: hat.id,
                 hatQty: 1,
+                hatPrice: hat.price
             });
         }
         return user.save();
@@ -96,7 +102,6 @@ hatRouter.put('/:id/buy', (req, res) => {
         console.log(e);
     });
 });
-
 
 
 

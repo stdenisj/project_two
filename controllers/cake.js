@@ -64,6 +64,8 @@ cakeRouter.put('/:id/buy', (req, res) => {
     
     }).then(() => {
         // Figure out if the donut exists in the shopping cart:
+
+        let newCartItemPrice = null;
         let newCartItem = null;
         // For each cart item:
         for (let cartItem of user.shoppingCart) {
@@ -81,13 +83,21 @@ cakeRouter.put('/:id/buy', (req, res) => {
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
             newCartItem.cakeQty += 1;
+            newCartItem.cakePrice += newCartItem.cake.price;
+            newCartItemPrice += newCartItem.cake.price
+            user.cartTotal += newCartItemPrice;
+
         } else {
             // Otherwise: create a new cart item with quantity 1
+            user.cartTotal += cake.price;
             user.shoppingCart.push({
                 cake: cake.id,
                 cakeQty: 1,
+                cakePrice: cake.price
             });
+            
         }
+
         return user.save();
     
     }).then(() => {
