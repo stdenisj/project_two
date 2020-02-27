@@ -1,3 +1,7 @@
+body {
+    font-family: 'Rajdhani';
+}
+
 a, a:hover {
     text-decoration:  none;
     text-transform: none;
@@ -40,4 +44,14 @@ a, a:hover {
 
 .row {
     margin-top: 40px;
+}
+
+p {
+    font-size: 30px;
+}
+
+.nav-link {
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
 }
