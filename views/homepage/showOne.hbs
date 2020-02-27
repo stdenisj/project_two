@@ -29,7 +29,7 @@
 
                 <p>Quantity Available: {{item.qty}}</p>
         <div class="row">
-        {{#if admin}}
+        {{#if user}}
             {{#if canBuy }}
             <div class="col">
 				<form action="/{{item.category}}s/{{ item.id }}/buy?_method=PUT" method="POST">
@@ -37,7 +37,7 @@
 				</form>
             </div>
 			{{/if}}
-            {{#if admin.isAdmin}}
+            {{#if user.isAdmin}}
             <div class="col">
                 <form action="/{{item.category}}s/{{ item.id }}?_method=DELETE" method="POST">
 			        <input type="submit" class="btn btn-outline-danger" value="Delete"/>

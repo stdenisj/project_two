@@ -5,17 +5,27 @@ let balloonRouter = express.Router();
 const Balloon = require('../models/balloon');
 const User = require('../models/user')
 
+//= =====================
+// New Form
+//= =====================
+// This route renders the form to add a new balloon to the database
+
 balloonRouter.get('/new', (req, res) => {
     res.render('balloons/newBalloon');
 });
 
+//= =====================
+// SHOW SINGLE Item
+//= =====================
+// This route checks to see if there is a user stored in the database.
+//if there is it 
 balloonRouter.get('/:id', (req, res) => {
-    let admin = null;
-    User.findOne().then( (user) => {
-        admin = user;
+    let user = null;
+    User.findOne().then( (foundUser) => {
+        user = foundUser;
     Balloon.findById(req.params.id).then( (item) => {
         const canBuy = item.qty > 0;
-        res.render('homepage/showOne', { item, canBuy, admin });
+        res.render('homepage/showOne', { item, canBuy, user });
     }).catch( (e) => {
         console.log(e);
     });

@@ -11,12 +11,12 @@ cakeRouter.get('/new', (req, res) => {
 });
 
 cakeRouter.get('/:id', (req, res) => {
-    let admin = null;
-    User.findOne().then( (user) => {
-        admin = user;
+    let user = null;
+    User.findOne().then( (foundUser) => {
+        user = foundUser;
     Cake.findById(req.params.id).then( (item) => {
         const canBuy = item.qty > 0;
-        res.render('homepage/showOne', { item, canBuy, admin });
+        res.render('homepage/showOne', { item, canBuy, user });
     });
 });
 });
