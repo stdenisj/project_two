@@ -33,4 +33,10 @@ userRouter.post('/', (req, res) => {
     })
 })
 
+userRouter.delete('/', (req, res) => {
+    User.findOneAndDelete().then( () => {
+        res.redirect('/')
+    })
+})
+
 module.exports = userRouter;

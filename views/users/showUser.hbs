@@ -50,6 +50,15 @@
                 {{/if}}
         	</div>
 			{{/each}}
-            <p>Total Price: ${{user.cartTotal}}</p>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Total Price: ${{user.cartTotal}}</p>
+            </div>
+            <div class="col">  
+                <form action="/user?_method=DELETE" method="POST">
+			        <input type="submit" class="btn btn-outline-danger" value="Delete"/>
+		        </form>
+            </div>
         </div>
 	</div>
