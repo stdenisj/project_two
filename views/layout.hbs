@@ -4,27 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PARTY!!!</title>
+<link href="https://fonts.googleapis.com/css?family=Akronim|Federant|Monoton|Montserrat+Subrayada|Rajdhani&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="/styles.css" type="text/css">
 </head>
 <body>
-  <div class='container-fluid'>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Party time</a>
+  <div class='container-fluid'>  
+    <a class="container-fluid text-center" href="/"><h1 class='title'>PARTY TIME</h1></a>
+    {{!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div class="navbar-nav ml-auto">
-      <a class="nav-item nav-link" href="/balloons">Balloons</a>
+  <div class="container-fluid collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="container-fluid navbar-nav text-center">
+      <div class="container-fluid"></div>
       <a class="nav-item nav-link" href="/cakes">Cakes</a>
+      <a class="nav-item nav-link" href="/balloons">Balloons</a>
       <a class="nav-item nav-link" href="/hats">Hats</a>
-      <a class="nav-item nav-link" href="/user">Cart</a>
+    </div>
+      <a class="nav-item nav-link" href="/user"><img height="50px" src="https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-02-512.png" alt=""></a>
     </div>
   </div>
 </nav>
 </div>
-    
+     --}}
+  <nav class="navbar navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+      <a class="nav-item nav-link" href="/user"><img height="50px" src="https://cdn4.iconfinder.com/data/icons/shopping-21/64/shopping-02-512.png" alt=""></a>
+  </nav>
+    <div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-light p-4 row">
+      <a class="nav-item nav-link col" href="/cakes">Cakes</a>
+      <a class="nav-item nav-link col" href="/balloons">Balloons</a>
+      <a class="nav-item nav-link col" href="/hats">Hats</a>
+    </div>
+  </div>
+</div>
         {{{ body }}}
 
 <!-- Footer -->
