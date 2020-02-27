@@ -6,7 +6,7 @@ const Balloon = require('../models/balloon');
 const User = require('../models/user')
 
 //= =====================
-// New Form
+// NEW FORM
 //= =====================
 // This route renders the form to add a new balloon to the database
 
@@ -15,22 +15,35 @@ balloonRouter.get('/new', (req, res) => {
 });
 
 //= =====================
-// SHOW SINGLE Item
+// SHOW SINGLE ITEM
 //= =====================
 // This route checks to see if there is a user stored in the database.
-//if there is it 
+// if there there is it stores the user as a variable. Then it finds
+// the item based on the id provided in the url. Next it checks to
+// see it the item qty is greater than 0. If it is then it assigns
+// a variable called canBuy. Lastly the page showOne view is rendered
+// and the item, user and canBuy variables are passed into the page.
+
 balloonRouter.get('/:id', (req, res) => {
     let user = null;
     User.findOne().then( (foundUser) => {
         user = foundUser;
-    Balloon.findById(req.params.id).then( (item) => {
+        return Balloon.findById(req.params.id)
+    .then( (item) => {
         const canBuy = item.qty > 0;
         res.render('homepage/showOne', { item, canBuy, user });
     }).catch( (e) => {
         console.log(e);
+        });
     });
 });
-});
+
+//= =====================
+// EDIT SINGLE ITEM
+//= =====================
+// This page checks the database to find a balloon based on the id.
+// then it renders the editBalloon view and passes the found balloon
+// into the page.
 
 balloonRouter.get('/:id/edit', (req, res) => {
     Balloon.findById(req.params.id).then( (balloon) => {
@@ -39,6 +52,10 @@ balloonRouter.get('/:id/edit', (req, res) => {
         console.log(e);
     });
 });
+
+//= =====================
+// SHOW SINGLE Item
+//= =====================
 
 balloonRouter.get('/', (req, res) => {
      Balloon.find().then( (items) => {
