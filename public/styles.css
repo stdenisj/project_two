@@ -1,7 +1,9 @@
 body {
     font-family: 'Rajdhani';
 }
-
+main {
+    padding-bottom: 50px;
+}
 a, a:hover {
     text-decoration:  none;
     text-transform: none;
