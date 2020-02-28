@@ -61,5 +61,10 @@
 			        <input type="submit" class="btn btn-outline-danger" value="Delete"/>
 		        </form>
             </div>
+            <div class="col">
+                <form action="/user/{{ user.id }}/edit" method="GET">
+                    <input type="submit" class="btn btn-outline-warning" value="Edit">
+                </form>
+            </div>
         </div>
 	</div>

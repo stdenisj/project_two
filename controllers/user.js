@@ -10,6 +10,15 @@ userRouter.get('/new', (req, res) => {
     res.render('users/newUser')
 })
 
+userRouter.get('/:id/edit', (req, res) => {
+    User.findById(req.params.id).then( (user) => {
+        res.render('users/login', { user });
+    }).catch( (e) => {
+        console.log(e);
+    });
+});
+
+
 userRouter.get('/', (req, res) => {
     let user = null;
     User.findOne().then(foundUser => {
@@ -32,6 +41,14 @@ userRouter.post('/', (req, res) => {
         res.redirect('/user')
     })
 })
+
+
+userRouter.put('/:id', (req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body).then( (user) => {
+        res.redirect('/user/' + user.id);
+    });
+});
+
 
 userRouter.delete('/', (req, res) => {
     User.findOneAndDelete().then( () => {

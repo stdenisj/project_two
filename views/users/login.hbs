@@ -1,5 +1,5 @@
-<main>
-    <h2>Add User</h2>
+{{!-- <main>
+    <h2>Edit User</h2>
 
 <div>
 
@@ -11,5 +11,25 @@
 
 </div>
 
+
+</main> --}}
+
+
+<main>
+    <div class="container-fluid">
+        <div class="row text-center padding">
+            <div class="col text-center padding">
+                <h1>Edit User</h1>
+                <form action="/user/{{user.id}}?_method=PUT" method="POST">
+                    <input type="text" placeholder="{{user.username}}" name="username"><br>
+                    <input type="password" placeholder="{{user.password}}" name="password"><br>
+                            Is this user an admin? <br>
+                            Yes    <input type="radio" name="isAdmin" value="true" {{#if user.isAdmin}} checked {{/if}}/>
+                            No      <input type="radio" name="isAdmin" value="false" {{#if user.isAdmin}} {{else}} checked {{/if}}/><br>
+                    <input type="submit" class="btn btn-success" value="Update User">
+                </form>
+            </div>
+        </div>
+    </div>
 
 </main>
