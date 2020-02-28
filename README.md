@@ -5,9 +5,8 @@ My goal for this project was to create a website using Express, MongoDB, Node.js
 Live site: https://partystore.herokuapp.com/
 
 Technologies Used
-Languages - HTML5, CSS3, Javascript.
-Frameworks - Node.JS, Express, Mongoose, Handlebars
-Design - Google and Adobe Fonts, Bootstrap, Sweet Alerts
+HTML5, CSS3, Javascript, Node.JS, Express, Mongoose, Handlebars
+Design - Google Fonts, Bootstrap.
 Project Planning & Text Editor - Trello, Figma, Visual Studios Code
 
 WireFrame:<br>
