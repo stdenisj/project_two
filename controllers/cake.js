@@ -110,7 +110,7 @@ cakeRouter.delete('/:id', (req, res) => {
 });
 
 //= =====================
-//  BUY SINGLE ITEM
+//  BUY ITEMS
 //= =====================
 
 // This is the PUT request for buying a single Item. First if declares two variables to store
@@ -152,32 +152,24 @@ cakeRouter.put('/:id/buy', (req, res) => {
         return Cake.populate(user.shoppingCart, { path: 'cake' });
     
     }).then(() => {
-        // Figure out if the donut exists in the shopping cart:
 
         let newCartItemPrice = null;
         let newCartItem = null;
-        // For each cart item:
         for (let cartItem of user.shoppingCart) {
-            // If the cart item's donut's ID matches the ID from
-            // our request:
             if((cartItem.hat == undefined) && (cartItem.balloon == undefined)) {
             let cakeId = cartItem.cake.id;
             if (cakeId === cake.id) {
-                // Remember this item and update it below.
                 newCartItem = cartItem;
             }
         }
         }
-        // If donut exists in the shopping cart:
         if (newCartItem !== null) {
-            // Increase the cart item's quantity by 1
             newCartItem.cakeQty += (+num + +newCartItem.cakeQty);
             newCartItem.cakePrice += (num * newCartItem.cake.price);
             newCartItemPrice += newCartItem.cake.price
             user.cartTotal += (num * newCartItemPrice);
 
         } else {
-            // Otherwise: create a new cart item with quantity 1
             user.cartTotal += (num * cake.price);
             user.shoppingCart.push({
                 cake: cake.id,

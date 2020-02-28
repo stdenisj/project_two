@@ -116,7 +116,7 @@ balloonRouter.delete('/:id', (req, res) => {
 
 
 //= =====================
-//  BUY SINGLE ITEM
+//  BUY ITEMS
 //= =====================
 
 // This is the PUT request for buying a single Item. First if declares two variables to store
@@ -159,31 +159,24 @@ balloonRouter.put('/:id/buy', (req, res) => {
         return Balloon.populate(user.shoppingCart, { path: 'balloon' });
     
     }).then(() => {
-        // Figure out if the donut exists in the shopping cart:
         let newCartItem = null;
         let newCartItemPrice = null;
-        // For each cart item:
         for (let cartItem of user.shoppingCart) {
-            // If the cart item's donut's ID matches the ID from
-            // our request:
+
             if((cartItem.cake == undefined) && (cartItem.hat == undefined)){
             let balloonId = cartItem.balloon.id;
             if (balloonId === balloon.id) {
-                // Remember this item and update it below.
                 newCartItem = cartItem;
             }
         }
         }
-        // If donut exists in the shopping cart:
         if (newCartItem !== null) {
-            // Increase the cart item's quantity by 1
             newCartItem.balQty = (+num + +newCartItem.balQty);
             newCartItem.balPrice += (num* newCartItem.balloon.price);
             newCartItemPrice += newCartItem.balloon.price
             user.cartTotal += (num * newCartItemPrice);
 
         } else {
-            // Otherwise: create a new cart item with quantity 1
             user.cartTotal += (num * balloon.price);
             user.shoppingCart.push({
                 balloon: balloon.id,

@@ -108,7 +108,7 @@ hatRouter.delete('/:id', (req, res) => {
 });
 
 //= =====================
-//  BUY SINGLE ITEM
+//  BUY ITEMS
 //= =====================
 
 // This is the PUT request for buying a single Item. First if declares two variables to store
@@ -150,30 +150,22 @@ hatRouter.put('/:id/buy', (req, res) => {
         return Hat.populate(user.shoppingCart, { path: 'hat' });
     
     }).then(() => {
-        // Figure out if the donut exists in the shopping cart:
         let newCartItemPrice = null;
         let newCartItem = null;
-        // For each cart item:
         for (let cartItem of user.shoppingCart) {
-            // If the cart item's donut's ID matches the ID from
-            // our request:
             if((cartItem.cake == undefined) && (cartItem.balloon == undefined)){
             let hatId = cartItem.hat.id;
             if (hatId === hat.id) {
-                // Remember this item and update it below.
                 newCartItem = cartItem;
             }
         }
         }
-        // If donut exists in the shopping cart:
         if (newCartItem !== null) {
-            // Increase the cart item's quantity by 1
             newCartItem.hatQty += (+num + +newCartItem.hatQty);
             newCartItem.hatPrice += (num * newCartItem.hat.price);
             newCartItemPrice += newCartItem.hat.price
             user.cartTotal += (num * newCartItemPrice);
         } else {
-            // Otherwise: create a new cart item with quantity 1
             user.cartTotal += (num * hat.price);
             user.shoppingCart.push({
                 hat: hat.id,
