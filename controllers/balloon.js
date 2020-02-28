@@ -37,8 +37,7 @@ balloonRouter.get('/:id', (req, res) => {
         return Balloon.findById(req.params.id)
     .then( (item) => {
         const canBuy = item.qty > 0;
-        const canBuyDozen = item.qty > 11;
-        res.render('homepage/showOne', { item, canBuy, user, canBuyDozen });
+        res.render('homepage/showOne', { item, canBuy, user });
     }).catch( (e) => {
         console.log(e);
         });
@@ -140,12 +139,17 @@ balloonRouter.delete('/:id', (req, res) => {
 // shopping cart schema and pushing the new schema object into the shopping cart array. Then it saves the user.
 // Lastly it redirects back to the page with the new updated information
 
+
 balloonRouter.put('/:id/buy', (req, res) => {
+    let num = req.body.numberToBuy;
     let balloon = null;
     let user = null;
     Balloon.findById(req.params.id).then(foundBalloon => {
+        if((foundBalloon.qty < num) || ( num < 0)) {
+            num = 0;
+        }
         balloon = foundBalloon;
-        balloon.qty -= 1;
+        balloon.qty -= num;
         return balloon.save();
     
     }).then(balloon => {
@@ -173,74 +177,18 @@ balloonRouter.put('/:id/buy', (req, res) => {
         // If donut exists in the shopping cart:
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
-            newCartItem.balQty += 1;
-            newCartItem.balPrice += newCartItem.balloon.price;
+            newCartItem.balQty = (+num + +newCartItem.balQty);
+            newCartItem.balPrice += (num* newCartItem.balloon.price);
             newCartItemPrice += newCartItem.balloon.price
-            user.cartTotal += newCartItemPrice;
+            user.cartTotal += (num * newCartItemPrice);
 
         } else {
             // Otherwise: create a new cart item with quantity 1
-            user.cartTotal += balloon.price;
+            user.cartTotal += (num * balloon.price);
             user.shoppingCart.push({
                 balloon: balloon.id,
-                balQty: 1,
-                balPrice: balloon.price
-            });
-        }
-        return user.save();
-    
-    }).then(() => {
-        res.redirect('/balloons/' + balloon.id);
-    }).catch(e => {
-        console.log(e);
-    });
-});
-
-balloonRouter.put('/:id/buyDozen', (req, res) => {
-    let balloon = null;
-    let user = null;
-    Balloon.findById(req.params.id).then(foundBalloon => {
-        balloon = foundBalloon;
-        balloon.qty -= 12;
-        return balloon.save();
-    
-    }).then(balloon => {
-        return User.findOne();
-    }).then(foundUser => {
-        user = foundUser;
-        return Balloon.populate(user.shoppingCart, { path: 'balloon' });
-    
-    }).then(() => {
-        // Figure out if the donut exists in the shopping cart:
-        let newCartItem = null;
-        let newCartItemPrice = null;
-        // For each cart item:
-        for (let cartItem of user.shoppingCart) {
-            // If the cart item's donut's ID matches the ID from
-            // our request:
-            if((cartItem.cake == undefined) && (cartItem.hat == undefined)){
-            let balloonId = cartItem.balloon.id;
-            if (balloonId === balloon.id) {
-                // Remember this item and update it below.
-                newCartItem = cartItem;
-            }
-        }
-        }
-        // If donut exists in the shopping cart:
-        if (newCartItem !== null) {
-            // Increase the cart item's quantity by 1
-            newCartItem.balQty += 12;
-            newCartItem.balPrice += (12* newCartItem.balloon.price);
-            newCartItemPrice += newCartItem.balloon.price
-            user.cartTotal += (12 * newCartItemPrice);
-
-        } else {
-            // Otherwise: create a new cart item with quantity 1
-            user.cartTotal += (12 * balloon.price);
-            user.shoppingCart.push({
-                balloon: balloon.id,
-                balQty: 12,
-                balPrice: (12 * balloon.price),
+                balQty: num,
+                balPrice: (num * balloon.price),
             });
         }
         return user.save();

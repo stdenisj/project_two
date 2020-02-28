@@ -132,11 +132,15 @@ hatRouter.delete('/:id', (req, res) => {
 // Lastly it redirects back to the page with the new updated information
 
 hatRouter.put('/:id/buy', (req, res) => {
+    let num = req.body.numberToBuy
     let hat = null;
     let user = null;
     Hat.findById(req.params.id).then(foundHat => {
+        if((foundHat.qty < num) || (num < 0)) {
+            num = 0
+        }
         hat = foundHat;
-        hat.qty -= 1;
+        hat.qty -= num;
         return hat.save();
     
     }).then(hat => {
@@ -164,17 +168,17 @@ hatRouter.put('/:id/buy', (req, res) => {
         // If donut exists in the shopping cart:
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
-            newCartItem.hatQty += 1;
-            newCartItem.hatPrice += newCartItem.hat.price;
+            newCartItem.hatQty += (+num + +newCartItem.hatQty);
+            newCartItem.hatPrice += (num * newCartItem.hat.price);
             newCartItemPrice += newCartItem.hat.price
-            user.cartTotal += newCartItemPrice;
+            user.cartTotal += (num * newCartItemPrice);
         } else {
             // Otherwise: create a new cart item with quantity 1
-            user.cartTotal += hat.price;
+            user.cartTotal += (num * hat.price);
             user.shoppingCart.push({
                 hat: hat.id,
-                hatQty: 1,
-                hatPrice: hat.price
+                hatQty: num,
+                hatPrice: (num * hat.price)
             });
         }
         return user.save();

@@ -32,20 +32,6 @@
                 <p>Quantity Available: {{ item.qty }}</p>
         <div class="row">
         {{#if user}}
-            {{#if canBuy }}
-            <div class="col">
-				<form action="/{{ item.category }}s/{{ item.id }}/buy?_method=PUT" method="POST">
-					<input type="submit" class="btn btn-outline-success" value="Buy now!"/>
-				</form>
-            </div>
-            {{/if}}
-            {{#if canBuyDozen }}
-            <div class="col">
-				<form action="/{{ item.category }}s/{{ item.id }}/buyDozen?_method=PUT" method="POST">
-					<input type="submit" class="btn btn-outline-success" value="Buy Dozen!"/>
-				</form>
-            </div>
-			{{/if}}
             {{#if user.isAdmin}}
             <div class="col">
                 <form action="/{{ item.category }}s/{{ item.id }}?_method=DELETE" method="POST">
@@ -56,6 +42,14 @@
                 <form action="/{{ item.category }}s/{{ item.id }}/edit" method="GET">
                     <input type="submit" class="btn btn-outline-warning" value="Edit">
                 </form>
+            </div>
+            {{/if}}
+            {{#if canBuy }}
+            <div class="col">
+				<form action="/{{ item.category }}s/{{ item.id }}/buy?_method=PUT" method="POST">
+                    <input type="number" name='numberToBuy' placeholder="How Many?">
+					<input type="submit" class="btn btn-outline-success" value="Buy now!"/>
+				</form>
             </div>
             {{/if}}
         {{/if}}

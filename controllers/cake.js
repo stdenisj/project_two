@@ -134,11 +134,15 @@ cakeRouter.delete('/:id', (req, res) => {
 // Lastly it redirects back to the page with the new updated information
 
 cakeRouter.put('/:id/buy', (req, res) => {
+    let num = req.body.numberToBuy;
     let cake = null;
     let user = null;
     Cake.findById(req.params.id).then(foundCake => {
+        if((foundCake.qty < num) || (num < 0)) {
+            num = 0;
+        }
         cake = foundCake;
-        cake.qty -= 1;
+        cake.qty -= num;
         return cake.save();
     
     }).then(cake => {
@@ -167,18 +171,18 @@ cakeRouter.put('/:id/buy', (req, res) => {
         // If donut exists in the shopping cart:
         if (newCartItem !== null) {
             // Increase the cart item's quantity by 1
-            newCartItem.cakeQty += 1;
-            newCartItem.cakePrice += newCartItem.cake.price;
+            newCartItem.cakeQty += (+num + +newCartItem.cakeQty);
+            newCartItem.cakePrice += (num * newCartItem.cake.price);
             newCartItemPrice += newCartItem.cake.price
-            user.cartTotal += newCartItemPrice;
+            user.cartTotal += (num * newCartItemPrice);
 
         } else {
             // Otherwise: create a new cart item with quantity 1
-            user.cartTotal += cake.price;
+            user.cartTotal += (num * cake.price);
             user.shoppingCart.push({
                 cake: cake.id,
-                cakeQty: 1,
-                cakePrice: cake.price
+                cakeQty: num,
+                cakePrice: (num * cake.price)
             });
             
         }
