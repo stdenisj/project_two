@@ -9,6 +9,8 @@ const balloonRouter = express.Router();
 const Balloon = require('../models/balloon');
 const User = require('../models/user')
 
+// GET REQUESTS
+
 //= =====================
 //  NEW FORM
 //= =====================
@@ -70,6 +72,8 @@ balloonRouter.get('/', (req, res) => {
         console.log(e);
      });
 });
+
+// POST REQUESTS //
 
 //= =====================
 //  CREATE ITEM

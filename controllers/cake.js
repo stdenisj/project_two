@@ -1,14 +1,36 @@
-let express = require('express');
-let cakeRouter = express.Router();
 
+//= =====================
+//  REQUIRED
+//= =====================
+// These are the required items stored as variables.
+
+const express = require('express');
+const cakeRouter = express.Router();
 const Cake = require('../models/cake');
 const User = require('../models/user');
 
 
+// GET REQUESTS //
+
+//= =====================
+//  NEW FORM
+//= =====================
+// This route renders the form to add a new balloon to the database.
 
 cakeRouter.get('/new', (req, res) => {
     res.render('cakes/newCake');
 });
+
+
+//= =====================
+//  SHOW SINGLE ITEM
+//= =====================
+// This route checks to see if there is a user stored in the database.
+// if there there is it stores the user as a variable. Then it finds
+// the item based on the id provided in the url. Next it checks to
+// see it the item qty is greater than 0. If it is then it assigns
+// a variable called canBuy. Lastly the page showOne view is rendered
+// and the item, user and canBuy variables are passed into the page.
 
 cakeRouter.get('/:id', (req, res) => {
     let user = null;
@@ -21,11 +43,24 @@ cakeRouter.get('/:id', (req, res) => {
 });
 });
 
+//= =====================
+//  EDIT SINGLE ITEM
+//= =====================
+// This page checks the database to find a balloon based on the id.
+// then it renders the editBalloon view and passes the found balloon
+// into the page.
+
 cakeRouter.get('/:id/edit', (req, res) => {
     Cake.findById(req.params.id).then( (cake) => {
         res.render('cakes/editCake', { cake });
     })
 })
+
+//= =====================
+//  SHOW INDEX
+//= =====================
+// This page checks the database and gathers entries in the balloon collection.
+//  Then it renders the index view and passes the found collection entries into it.
 
 cakeRouter.get('/', (req, res) => {
     Cake.find().then( (items) => {
@@ -33,11 +68,27 @@ cakeRouter.get('/', (req, res) => {
     });
 });
 
+// POST REQUESTS //
+
+//= =====================
+//  CREATE ITEM
+//= =====================
+//  This is the POST request, it takes the information form the form rendered in the
+//  NEW FORM path and stores it in the associated collection in the database. Then it
+//  redirects back to the SHOW INDEX page.
+
 cakeRouter.post('/', (req, res) => {
     Cake.create(req.body).then( () => {
         res.redirect('/cakes');
     });
 });
+
+//= =====================
+//  EDIT ITEM
+//= =====================
+// This is the PUT request for when an item is edited. First it finds the item from the id
+// provided in the url. The it updates the item with the form entered in the EDIT SINGLE ITEM
+// path. When it is done it will redirect back to the item SHOW SINGLE ITEM page.
 
 cakeRouter.put('/:id', (req, res) => {
     Cake.findByIdAndUpdate(req.params.id, req.body).then( (cake) => {
@@ -45,12 +96,42 @@ cakeRouter.put('/:id', (req, res) => {
     });
 });
 
+//= =====================
+//  DELETE SINGLE ITEM
+//= =====================
+// This is the DELETE request for one item. First it finds the item in the database
+// using the url provided item id. When it finds the item it deletes it and then redirects
+// back to the SHOW INDEX page.
+
 cakeRouter.delete('/:id', (req, res) => {
     Cake.findByIdAndRemove(req.params.id).then( () => {
         res.redirect('/cakes');
     });
 });
 
+//= =====================
+//  BUY SINGLE ITEM
+//= =====================
+
+// This is the PUT request for buying a single Item. First if declares two variables to store
+// information. Then it finds the item in the database using the id from the url. When it finds
+// the item it stores it in first of the variables(declared earlier). Then it subtracts one from
+// the quantity and saves the item object. Next the user is found from the database. This user
+// is stored as the second of the variables(declared earlier). Then we populate the user's 
+// shoppingCart with the item database.
+//
+// Next we declare a variable for the item that will be added to the shopping cart and a variable to
+// store the price of that item. Then we loop through the user's shopping cart to if if the item is
+// already in the cart. Then we check to see if the item is in the one of the other database collections.
+// If the item is not from a different database collection, we save the item id and check to see if it matches
+// any other items in our cart, if it matches then we save the existing cart item to be updated(as a prior defined
+// variable)
+
+// Lastly if the item was already in the cart we update the quantity of items in the cart. Update the total price
+// of those items, and update the total price of the shopping cart. If the item was not in the cart then it adds
+// the new item to the shopping cart, it accomplishes this adding the information stored for the item into the
+// shopping cart schema and pushing the new schema object into the shopping cart array. Then it saves the user.
+// Lastly it redirects back to the page with the new updated information
 
 cakeRouter.put('/:id/buy', (req, res) => {
     let cake = null;
@@ -110,5 +191,10 @@ cakeRouter.put('/:id/buy', (req, res) => {
         console.log(e);
     });
 });
+
+//= =====================
+//  Export Router
+//= =====================
+// This exports all the routes to be used in other modules.
 
 module.exports = cakeRouter;
